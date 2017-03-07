@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        app:srcCompat="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:id="@+id/iV_PkgIcn"
+        tools:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:id="@+id/tV_PkgNm"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/iV_PkgIcn"
+        android:layout_toRightOf="@+id/iV_PkgIcn"
+        android:layout_alignTop="@+id/iV_PkgIcn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:id="@+id/tV_PkgLbl"
+        android:layout_alignBottom="@+id/iV_PkgIcn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/iV_PkgIcn"
+        android:layout_toEndOf="@+id/iV_PkgIcn"
+        android:textStyle="normal|italic" />
+
+</RelativeLayout>
