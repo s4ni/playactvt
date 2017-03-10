@@ -18,7 +18,7 @@ public class GridviewAdapter extends BaseAdapter
 	private ArrayList<Drawable> lsticn;
 	private Activity activity;
 	
-	public GridviewAdapter(Activity activity,ArrayList<String> listName, ArrayList<String> listLbl, ArrayList<Drawable> listIcn) {
+	GridviewAdapter(Activity activity,ArrayList<String> listName, ArrayList<String> listLbl, ArrayList<Drawable> listIcn) {
 		super();
 		this.lstname = listName;
 		this.lstlbl = listLbl;
@@ -44,11 +44,11 @@ public class GridviewAdapter extends BaseAdapter
 		return 0;
 	}
 
-	public static class ViewHolder
+	private static class ViewHolder
 	{
-		public ImageView imgActvticn;
-		public TextView txtActvtname;
-		public TextView txtActvtlbl;
+		ImageView imgActvticn;
+		TextView txtActvtname;
+		TextView txtActvtlbl;
 	}
 	
 	@Override
@@ -60,7 +60,7 @@ public class GridviewAdapter extends BaseAdapter
 		if(convertView==null)
 		{
 			view = new ViewHolder();
-			convertView = inflator.inflate(R.layout.lstbase, null);
+			convertView = inflator.inflate(R.layout.lstbase,null);
 
 			view.txtActvtname=(TextView)convertView.findViewById(R.id.tV_PkgNm);
 			view.txtActvtlbl=(TextView)convertView.findViewById(R.id.tV_PkgLbl);

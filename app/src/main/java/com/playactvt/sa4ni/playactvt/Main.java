@@ -51,16 +51,16 @@ public class Main extends AppCompatActivity {
         pmp = getPackageManager();
         all_app = pmp.getInstalledApplications(0);
         for(ApplicationInfo appinfo: all_app){
-
-            String str_nm = pmp.getApplicationLabel(appinfo).toString();
-            Drawable icn = pmp.getApplicationIcon(appinfo);
-            al_nm.add(str_nm);
-            lst_icn.add(icn);
-            int lngth = all_app.get(count).toString().length();
-            String str_lbl = all_app.get(count).toString().substring(24, lngth - 1);
-            al_lbl.add(str_lbl);
+            if( pmp.getLaunchIntentForPackage(appinfo.packageName) != null ){
+                String str_nm = pmp.getApplicationLabel(appinfo).toString();
+                Drawable icn = pmp.getApplicationIcon(appinfo);
+                al_nm.add(str_nm);
+                lst_icn.add(icn);
+                int lngth = all_app.get(count).toString().length();
+                String str_lbl = all_app.get(count).toString().substring(24, lngth - 1);
+                al_lbl.add(str_lbl);
+            }
             count = count + 1;
-
         }
         GVA_avtvt=new GridviewAdapter(this,al_nm,al_lbl, lst_icn);
         grd_main.setAdapter(GVA_avtvt);
@@ -68,7 +68,6 @@ public class Main extends AppCompatActivity {
         grd_main.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 String sel_app = GVA_avtvt.getItem(position);
                 et_app.setText(sel_app);
             }
@@ -77,25 +76,19 @@ public class Main extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String str_pkg="";
                 for (int i=0; i < count; i++) {
-                    if (et_app.getText().toString().equals(al_nm.get(i).toString())) {
-
+                    if (et_app.getText().toString().equals(al_nm.get(i))) {
                         str_pkg = al_lbl.get(i);
                         break;
-
                     }else{
                         str_pkg = "";
                     }
                 }
                 if(str_pkg != ""){
-
-                    Log.d("Cached", str_pkg);
                     Intent i = pmp.getLaunchIntentForPackage(str_pkg);
                     startActivity(i);
                     Toast.makeText(getApplicationContext(), et_app.getText().toString()+" Loaded", Toast.LENGTH_SHORT).show();
-
                 }else if(str_pkg == ""){
                     Toast.makeText(getApplicationContext(), "Application Not Found, Try Again", Toast.LENGTH_SHORT).show();
                 }
@@ -103,3 +96,4 @@ public class Main extends AppCompatActivity {
         });
     }
 }
+//Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=org.cyanogenmod.gello.browser cmp=org.cyanogenmod.gello.browser/com.android.browser.BrowserLauncher }
